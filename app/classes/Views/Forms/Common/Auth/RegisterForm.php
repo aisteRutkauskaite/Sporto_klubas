@@ -9,71 +9,101 @@ class RegisterForm extends Form
     public function __construct()
     {
         parent::__construct([
-            'fields' => [
-                'email' => [
-                    'label' => 'EMAIL',
-                    'type' => 'text',
-                    'validators' => [
-                        'validate_field_not_empty',
-                        'validate_email',
-                        'validate_user_unique',
-                    ],
-                    'extra' => [
-                        'attr' => [
-                            'placeholder' => 'Enter email',
+                'fields' => [
+                    'name' => [
+                        'label' => 'Vardas',
+                        'type' => 'text',
+                        'validators' => [
+                            'validate_field_not_empty',
+                            'validate_symbols_and_numbers',
+                            'validate_field_range' => [
+                                'min' => 0,
+                                'max' => 40
+                            ]
+                        ],
+                        'extra' => [
+                            'attr' => [
+                                'placeholder' => 'Įrašykite savo vardą',
+                            ]
                         ]
-                    ]
-                ],
-                'user_name' => [
-                    'label' => 'NAME',
-                    'type' => 'text',
-                    'validators' => [
-                        'validate_field_not_empty',
                     ],
-                    'extra' => [
-                        'attr' => [
-                            'placeholder' => 'Enter your full name',
+                    'last_name' => [
+                        'label' => 'Pavardė',
+                        'type' => 'text',
+                        'validators' => [
+                            'validate_field_not_empty',
+                            'validate_symbols_and_numbers',
+                            'validate_field_range' => [
+                                'min' => 0,
+                                'max' => 40
+                            ]
+                        ],
+                        'extra' => [
+                            'attr' => [
+                                'placeholder' => 'Įrašykite savo pavardę',
+                            ]
                         ]
-                    ]
-                ],
-                'password' => [
-                    'label' => 'PASSWORD',
-                    'type' => 'password',
-                    'validators' => [
-                        'validate_field_not_empty',
                     ],
-                    'extra' => [
-                        'attr' => [
-                            'placeholder' => 'Enter password',
-                         ]
-                    ]
-                ],
-                'password_repeat' => [
-                    'label' => 'PASSWORD REPEAT',
-                    'type' => 'password',
-                    'validators' => [
-                        'validate_field_not_empty',
-                    ],
-                    'extra' => [
-                        'attr' => [
-                            'placeholder' => 'Repeat password',
+                    'email' => [
+                        'label' => 'EMAIL',
+                        'type' => 'text',
+                        'validators' => [
+                            'validate_field_not_empty',
+                            'validate_email',
+                            'validate_user_unique',
+                        ],
+                        'extra' => [
+                            'attr' => [
+                                'placeholder' => 'Enter email',
+                            ]
                         ]
+                    ],
+                    'password' => [
+                        'label' => 'Slaptažodis',
+                        'type' => 'password',
+                        'validators' => [
+                            'validate_field_not_empty',
+                        ],
+                        'extra' => [
+                            'attr' => [
+                                'placeholder' => 'Įveskite slaptažodį',
+                            ]
+                        ]
+                    ],
+                    'telephone_number' => [
+                        'label' => 'Telefono numeris',
+                        'type' => 'tel',
+                        'validators' => [
+                        ],
+                        'extra' => [
+                            'attr' => [
+                                'placeholder' => 'Įveskite savo telefono numerį',
+                            ]
+                        ]
+                    ],
+                    'home_adress' => [
+                        'label' => 'Namų adresas',
+                        'type' => 'text',
+                        'validators' => [
+                        ],
+                        'extra' => [
+                            'attr' => [
+                                'placeholder' => 'Įveskite savo namų adresą',
+                            ]
+                        ]
+                    ],
+                ],
+                'buttons' => [
+                    'register' => [
+                        'title' => 'Registracija',
                     ]
                 ],
-            ],
-            'buttons' => [
-                'register' => [
-                    'title' => 'REGISTER',
-                ]
-            ],
-            'validators' => [
-                'validate_fields_match' => [
-                    'password',
-                    'password_repeat'
+                'validators' => [
+                    'validate_fields_match' => [
+                    ]
                 ]
             ]
-        ]
-    );
+        );
 
     }
 }

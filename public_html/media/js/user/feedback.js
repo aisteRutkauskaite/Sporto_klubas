@@ -93,6 +93,7 @@ const table = {
          * @returns {Element}
          */
         build: function (data) {
+
             const row = document.createElement('tr');
 
             if (data.id == null) {
@@ -103,26 +104,46 @@ const table = {
             row.className = 'data-row';
 
             Object.keys(data).forEach(data_id => {
-                let td = document.createElement('td');
-                td.innerHTML = data[data_id];
-                td.className = data_id;
-                row.append(td);
+                switch (data_id) {
+
+                    case 'buttons':
+                        let buttons = data[data_id];
+                        Object.keys(buttons).forEach(button_id => {
+                            let td = document.createElement('td');
+                            let btn = document.createElement('button');
+                            btn.innerHTML = buttons[button_id];
+                            btn.className = button_id;
+                            td.append(btn);
+                            row.append(td);
+                        });
+                        break;
+
+                    default:
+                        let td = document.createElement('td');
+                        td.innerHTML = data[data_id];
+                        td.className = data_id;
+                        row.append(td);
+                }
             });
 
             return row;
         },
         /**
-         * Appends row to table from data
+         * Appends item to table from data
          *
          * @param {Object} data
          */
         append: function (data) {
-            console.log('Table: Creating row in table from ', data);
+            console.log('table: Creating row in table container from ', data);
             table.getElement().append(this.build(data));
-        }
+        },
+    },
+    // Buttons are declared on whole table, not on each item individually, so
+    // onClickListeners dont duplicate
+    buttons: {
+
     }
 };
-
 
 const forms = {
     /**

@@ -34,7 +34,7 @@ class HomeController
     {
         $this->page = new BasePage([
             'title' => 'Pizzas',
-            'js' => ['/media/js/home.js']
+            'js' => ['/media/js/user/feedback.js']
         ]);
     }
 
@@ -51,7 +51,7 @@ class HomeController
         if ($user) {
 
 
-            $heading = "Zdarova, {$user['user_name']}";
+            $heading = "Zdarova, {$user['name']}";
             $links = [
                 'login' => (new Link([
                     'url' => App::$router::getUrl('logout'),

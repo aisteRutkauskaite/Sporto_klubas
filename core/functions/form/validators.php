@@ -160,3 +160,31 @@ function validate_url(string $field_value, array &$field): bool
 
     return true;
 }
+
+
+
+
+/**
+ * Check if input conatains symbols or numbers
+ *
+ * @param string $field_value
+ * @param array $field
+ * @return bool
+ */
+function validate_symbols_and_numbers(string $field_value, array &$field): bool
+{
+    $field_values_array = str_split($field_value);
+
+    foreach ($field_values_array as $value) {
+        if (strtolower($value) === strtoupper($value)) {
+            $field['error'] = 'You cannot use symbols or numbers';
+
+            return false;
+        }
+    }
+
+    return true;
+}
+
+
+

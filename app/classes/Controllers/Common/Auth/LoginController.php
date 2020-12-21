@@ -25,7 +25,6 @@ class LoginController extends GuestController
     public function login()
     {
         if (isset($_POST['login'])) {
-            var_dump('fd');
             return [App::$router::getUrl('login') => 'Login'];
         }
 
