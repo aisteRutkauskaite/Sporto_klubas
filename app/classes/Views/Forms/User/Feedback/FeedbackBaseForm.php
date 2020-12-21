@@ -20,6 +20,11 @@ class FeedbackBaseForm extends Form
                             'max' => 500
                         ]
                     ],
+                    'extra' => [
+                        'attr' => [
+                            'placeholder' => 'Įrašykite savo atsiliepimą',
+                        ],
+                    ],
                 ],
             ],
             // No buttons since they will be defined in Extends

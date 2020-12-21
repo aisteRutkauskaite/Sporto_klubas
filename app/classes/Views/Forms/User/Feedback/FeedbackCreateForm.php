@@ -11,7 +11,7 @@ class FeedbackCreateForm extends FeedbackBaseForm
 
         $this->data['attr']['id'] = 'feedback-create-form';
         $this->data['buttons']['create'] = [
-            'title' => 'Add',
+            'title' => 'Paskelbti',
         ];
     }
 }

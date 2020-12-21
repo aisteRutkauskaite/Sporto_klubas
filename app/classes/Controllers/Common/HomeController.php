@@ -33,8 +33,8 @@ class HomeController
     public function __construct()
     {
         $this->page = new BasePage([
-            'title' => 'Pizzas',
-            'js' => ['/media/js/user/feedback.js']
+            'title' => 'Sporto klubas',
+
         ]);
     }
 
@@ -46,34 +46,8 @@ class HomeController
      */
     public function index(): ?string
     {
-        $user = App::$session->getUser();
-
-        if ($user) {
-
-
-            $heading = "Zdarova, {$user['name']}";
-            $links = [
-                'login' => (new Link([
-                    'url' => App::$router::getUrl('logout'),
-                    'text' => 'Logout'
-                ]))->render()
-            ];
-        } else {
-            $heading = 'Prisijunkite';
-            $links = [
-                'login' => (new Link([
-                    'url' => App::$router::getUrl('login'),
-                    'text' => 'Login'
-                ]))->render()
-            ];
-        }
-
         $content = (new View([
-            'title' =>  $heading,
-
-
-            'forms' => $forms ?? [],
-            'links' => $links ?? []
+            'title' => 'Welcome to our Sports Club',
         ]))->render(ROOT . '/app/templates/content/index.tpl.php');
 
         $this->page->setContent($content);

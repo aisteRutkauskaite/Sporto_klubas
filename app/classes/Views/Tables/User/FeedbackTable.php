@@ -9,7 +9,7 @@ use Core\Views\Table;
 
 class FeedbackTable extends Table
 {
-    public function __construct($feedbacks = [])
+    public function __construct($feedback = [])
     {
         parent::__construct([
             'headers' => [
@@ -17,7 +17,7 @@ class FeedbackTable extends Table
                 'Atiliepimas',
                 'Data',
             ],
-            'rows' => $feedbacks
+            'rows' => $feedback
         ]);
     }
 }

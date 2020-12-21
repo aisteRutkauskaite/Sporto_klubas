@@ -1,8 +1,12 @@
 'use strict';
 
+// const endpoints = {
+//     get: '/api/feedback/user/get',
+//     create: 'api/feedback/user/create',
+// };
 const endpoints = {
-    get: '/api/feedback/user/get',
-    create: 'api/feedback/user/create',
+    get: '/api/feedback/get',
+    create: '/api/feedback/create',
 };
 
 /**
@@ -45,6 +49,145 @@ function api(url, formData, success, fail) {
         });
 }
 
+
+/**
+ * Form array
+ * Contains all form-related functionality
+ *
+ * Object forms
+ */
+const forms = {
+    /**
+     * Create Form
+     */
+    create: {
+        init: function () {
+            if (this.getElement()) {
+                this.getElement().addEventListener('submit', this.onSubmitListener);
+                return true;
+            }
+
+            return false;
+        },
+        getElement: function () {
+            return document.getElementById(selectors.forms.create);
+        }
+        ,
+        onSubmitListener: function (e) {
+            e.preventDefault();
+            let formData = new FormData(e.target);
+            formData.append('action', 'create');
+            api(endpoints.create, formData, forms.create.success, forms.create.fail);
+        }
+        ,
+        success: function (data) {
+            const element = forms.create.getElement();
+
+            table.row.append(data);
+            forms.ui.errors.hide(element);
+            forms.ui.clear(element);
+            forms.ui.flash.class(element, 'success');
+        }
+        ,
+        fail: function (errors) {
+            forms.ui.errors.show(forms.create.getElement(), errors);
+        }
+    },
+    /**
+     * Common/Universal Form UI Functions
+     */
+    ui: {
+        init: function () {
+            // Function has to exist
+            // since we're calling init() for
+            // all elements withing forms object
+            return true;
+        }
+        ,
+        /**
+         * Fills form fields with data
+         * Each data index corelates with input name attribute
+         *
+         * @param {Element} form
+         * @param {Object} data
+         */
+        fill: function (form, data) {
+            console.log('Filling form fields with:', data);
+            form.setAttribute('data-id', data.id);
+
+            Object.keys(data).forEach(data_id => {
+                if (form[data_id]) {
+                    const input = form.querySelector('input[name="' + data_id + '"]');
+                    if (input) {
+                        input.value = data[data_id];
+                    } else {
+                        console.log('Could not fill field ' + data_id + 'because it wasn`t found in form');
+                    }
+                }
+            });
+        }
+        ,
+        clear: function (form) {
+            let fields = form.querySelectorAll('[name]')
+            fields.forEach(field => {
+                field.value = '';
+            });
+        }
+        ,
+        flash:
+            function (element, class_name) {
+                const prev = element.className;
+
+                element.className += class_name;
+                setTimeout(function () {
+                    element.className = prev;
+                }, 1000);
+            },
+        /**
+         * Form-error related functionality
+         */
+        errors: {
+            /**
+             * Shows errors in form
+             * Each error index correlates with input name attribute
+             *
+             * @param {Element} form
+             * @param {Object} errors
+             */
+            show: function (form, errors) {
+                this.hide(form);
+
+                console.log('Form errors received', errors);
+
+                Object.keys(errors).forEach(function (error_id) {
+                    const field = form.querySelector('textarea[name="' + error_id + '"]');
+                    if (field) {
+                        const span = document.createElement("span");
+                        span.className = 'field-error';
+                        span.innerHTML = errors[error_id];
+                        field.parentNode.append(span);
+
+                        console.log('Form error in field: ' + error_id + ':' + errors[error_id]);
+                    }
+                });
+            }
+            ,
+            /**
+             * Hides (destroys) all errors in form
+             * @param {type} form
+             */
+            hide: function (form) {
+                const errors = form.querySelectorAll('.field-error');
+                if (errors) {
+                    errors.forEach(node => {
+                        node.remove();
+                    });
+                }
+            }
+        }
+    }
+};
+
 /**
  * Table-related functionality
  */
@@ -55,6 +198,11 @@ const table = {
     init: function () {
         if (this.getElement()) {
             this.data.load();
+
+            Object.keys(this.buttons).forEach(buttonId => {
+                let success = table.buttons[buttonId].init();
+                console.log('Setting up button listeners "' + buttonId + '": ' + (success ? 'PASS' : 'FAIL'));
+            });
 
             return true;
         }
@@ -70,7 +218,7 @@ const table = {
          * @returns {undefined}
          */
         load: function () {
-            console.log('Table: Calling API to get data...');
+            console.log('table: Calling API to get data...');
             api(endpoints.get, null, this.success, this.fail);
         },
         success: function (data) {
@@ -83,11 +231,11 @@ const table = {
         }
     },
     /**
-     * Operations with rows
+     * Operations with items
      */
     row: {
         /**
-         * Builds row element from data
+         * Builds item element from data
          *
          * @param {Object} data
          * @returns {Element}
@@ -144,130 +292,6 @@ const table = {
 
     }
 };
-
-const forms = {
-    /**
-     * Create Form
-     */
-    create: {
-        init: function () {
-            if (this.getElement()) {
-                this.getElement().addEventListener('submit', this.onSubmitListener);
-                return true;
-            }
-
-            return false;
-        },
-        getElement: function () {
-            return document.getElementById(selectors.forms.create);
-        },
-        onSubmitListener: function (e) {
-            e.preventDefault();
-            let formData = new FormData(e.target);
-            formData.append('action', 'create');
-            api(endpoints.create, formData, forms.create.success, forms.create.fail);
-        },
-        success: function (data) {
-            const element = forms.create.getElement();
-
-            grid.item.append(data);
-            forms.ui.errors.hide(element);
-            forms.ui.clear(element);
-            forms.ui.flash.class(element, 'success');
-        },
-        fail: function (errors) {
-            forms.ui.errors.show(forms.create.getElement(), errors);
-        }
-    },
-    ui: {
-        init: function () {
-            // Function has to exist
-            // since we're calling init() for
-            // all elements withing forms object
-            return true;
-        },
-        /**
-         * Fills form fields with data
-         * Each data index corelates with input name attribute
-         *
-         * @param {Element} form
-         * @param {Object} data
-         */
-        fill: function (form, data) {
-            console.log('Filling form fields with:', data);
-            form.setAttribute('data-id', data.id);
-
-            Object.keys(data).forEach(data_id => {
-                if (form[data_id]) {
-                    const input = form.querySelector('input[name="' + data_id + '"]');
-                    if (input) {
-                        input.value = data[data_id];
-                    } else {
-                        console.log('Could not fill field ' + data_id + 'because it wasn`t found in form');
-                    }
-                }
-            });
-        },
-        clear: function (form) {
-            let fields = form.querySelectorAll('[name]')
-            fields.forEach(field => {
-                field.value = '';
-            });
-        },
-        flash: {
-            class: function (element, class_name) {
-                const prev = element.className;
-
-                element.className += class_name;
-                setTimeout(function () {
-                    element.className = prev;
-                }, 1000);
-            }
-        },
-        /**
-         * Form-error related functionality
-         */
-        errors: {
-            /**
-             * Shows errors in form
-             * Each error index correlates with input name attribute
-             *
-             * @param {Element} form
-             * @param {Object} errors
-             */
-            show: function (form, errors) {
-                this.hide(form);
-
-                console.log('Form errors received', errors);
-
-                Object.keys(errors).forEach(function (error_id) {
-                    const field = form.querySelector('input[name="' + error_id + '"]');
-                    if (field) {
-                        const span = document.createElement("span");
-                        span.className = 'field-error';
-                        span.innerHTML = errors[error_id];
-                        field.parentNode.append(span);
-
-                        console.log('Form error in field: ' + error_id + ':' + errors[error_id]);
-                    }
-                });
-            },
-            /**
-             * Hides (destroys) all errors in form
-             * @param {type} form
-             */
-            hide: function (form) {
-                const errors = form.querySelectorAll('.field-error');
-                if (errors) {
-                    errors.forEach(node => {
-                        node.remove();
-                    });
-                }
-            }
-        }
-    }
-};
-
 
 /**
  * Core page functionality

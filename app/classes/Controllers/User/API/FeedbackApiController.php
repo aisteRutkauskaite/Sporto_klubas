@@ -4,72 +4,12 @@
 namespace App\Controllers\User\API;
 
 use App\App;
-use App\Controllers\Base\API\AuthController;
-use App\Controllers\Base\UserController;
-use App\Views\BasePage;
-use App\Views\Forms\Admin\Order\OrderCreateForm;
-use App\Views\Forms\Admin\Pizza\PizzaCreateForm;
 use App\Views\Forms\User\Feedback\FeedbackCreateForm;
-use App\Views\Tables\User\FeedbackTable;
 use Core\Api\Response;
-use Core\View;
-use Core\Views\Link;
 
-class FeedbacksApiController extends AuthController
+
+class FeedbackApiController
 {
-    protected BasePage $page;
-
-    public function __construct()
-    {
-        parent::__construct();
-        $this->page = new BasePage([
-            'title' => 'Feedback',
-            'js' => ['/media/js/user/feedback.js']
-        ]);
-    }
-
-
-
-    public function index(): ?string
-    {
-        $user = App::$session->getUser();
-
-        if ($user) {
-            $forms = [
-                'create' => (new FeedbackCreateForm())->render(),
-            ];
-
-            $links = [
-                'register' => (new Link([
-                    'url' => App::$router::getUrl('logout'),
-                    'text' => 'Logout'
-                ]))->render()
-            ];
-        } else {
-            $msg = 'Want to write a comment?';
-            $links = [
-                'register' => (new Link([
-                    'url' => App::$router::getUrl('register'),
-                    'text' => 'Register'
-                ]))->render()
-            ];
-        }
-
-        $table = new FeedbackTable();
-
-        $content = (new View([
-            'title' => 'Feedbacks:',
-            'table' => $table->render(),
-            'forms' => $forms ?? [],
-            'message' => $msg ?? [],
-            'links' => $links ?? []
-        ]))->render(ROOT . '/app/templates/content/feedback.tpl.php');
-
-        $this->page->setContent($content);
-        return $this->page->render();
-    }
-
-
     public function create(): string
     {
         // This is a helper class to make sure
@@ -78,12 +18,13 @@ class FeedbacksApiController extends AuthController
         $form = new FeedbackCreateForm();
 
         if ($form->validate()) {
+            var_dump("not");
             $user = App::$session->getUser();
 
             $feedback = $form->values();
             $feedback['id'] = App::$db->insertRow('feedback', $form->values() + [
                     'name' => $user['name'],
-                    'date' => time()
+                    'timestamp' => time()
                 ]);
 
             $feedback = $this->buildRow($user, $feedback);
@@ -95,6 +36,7 @@ class FeedbacksApiController extends AuthController
         // Returns json-encoded response
         return $response->toJson();
     }
+
 
     /**
      * Formats row for json to be used in update method,
@@ -109,7 +51,7 @@ class FeedbacksApiController extends AuthController
         return $row = [
             'id' => $feedback['id'],
             'name' => $user['name'],
-            'comment' => $feedback['comment'],
+            'feedback' => $feedback['feedback'],
             'timestamp' => $this->timeFormat(time())
         ];
     }
