@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Zetta&display=swap');
 
 * {
     box-sizing: border-box;
@@ -23,9 +23,69 @@ main {
     align-items: center;
 }
 
+/*
+  # Table
+*/
+
 table, th, td {
-    border: 1px solid black;
+    border: 1px solid lightslategray;
     border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+}
+
+
+/*
+  # Navigation
+*/
+header {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: lightslategray;
+    width: 800px;
+    flex-wrap: wrap;
+}
+
+ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    align-items: center;
+}
+
+.nav_container_left {
+    justify-content: flex-start;
+}
+
+.nav_container_right {
+    justify-content: flex-end;
+}
+
+li {
+    margin: 10px;
+}
+
+a {
+    color: white;
+    font-size: 15px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.4s;
+    padding: 5px;
+    font-family: 'Lexend Zetta', sans-serif;
+
+}
+
+a:hover {
+    border: 2px solid rgb(211, 245, 45);
 }
 
 /*
@@ -33,10 +93,13 @@ table, th, td {
 */
 
 form {
-    width: 400px;
+    width: 800px;
     margin: 20px 0;
-    background-color: orangered;
+    background-color: lightslategray;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 span,
@@ -47,14 +110,17 @@ form p {
 input {
     padding: 7px;
     margin: 5px;
+    width: 300px;
 }
 
 button {
     padding: 7px;
     margin: 5px;
-    background: orangered;
+    background-color: rgb(211, 245, 45);
     color: white;
-    font-family: 'Bangers', cursive;
+    font-family: 'Lexend Zetta', sans-serif;
+    border: none;
+    width: 300px;
 }
 
 .error {
@@ -67,50 +133,22 @@ textarea.input-field {
 }
 
 /*
-  # Navigation
-*/
-
-nav {
-    display: flex;
-    justify-content: center;
-    background-color: orangered;
-    width: 100vw;
-    padding: 20px;
-    font-family: 'Bangers', cursive;
-    font-size: 40px;
-}
-
-ul {
-    display: flex;
-    justify-content: flex-end;
-    list-style: none;
-    padding: 0;
-    align-items: center;
-}
-
-a {
-    padding: 10px;
-    color: white;
-    background-color: orangered;
-    text-decoration: none;
-    /*margin: 30px;*/
-    font-size: 25px;
-    cursor: pointer;
-    transition: 0.4s;
-    font-family: 'Bangers', cursive;
-}
-
-a:hover {
-    color: black;
-}
-
-/*
   # Index
 */
 
 .index__body {
     /*height: 100vh;*/
 }
+
+#image_container {
+    background-image: url("/images/doing-abs.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 300px;
+    width: 100vw;
+}
+
 
 #pizza-grid-container {
     display: grid;
@@ -165,9 +203,10 @@ main {
 }
 
 .title {
-    font-family: 'Bangers', cursive;
+    font-family: 'Lexend Zetta', sans-serif;
     font-size: 50px;
     margin: 50px;
+    color: lightslategray;
 }
 
 .table {
@@ -197,5 +236,17 @@ tr, td, th {
 .modal .close {
     color: white;
     font-size: 50px;
-    cursor:pointer;
+    cursor: pointer;
 }
+
+/*
+  #Feedback
+*/
+
+.message_for_user {
+    font-family: 'Lexend Zetta', sans-serif;
+    font-size: 15px;
+    margin: 15px;
+    color: lightslategray;
+}
+

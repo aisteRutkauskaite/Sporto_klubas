@@ -9,7 +9,7 @@ use App\Views\Forms\Admin\Order\OrderCreateForm;
 use App\Views\Forms\Admin\Pizza\PizzaCreateForm;
 use App\Views\Forms\Admin\Pizza\PizzaUpdateForm;
 use App\Views\Forms\Admin\PizzaDeleteForm;
-use App\Views\Tables\User\OrderTable;
+use App\Views\Tables\User\FeedbackTable;
 use Core\View;
 use App\Views\Content\HomeContent;
 use Core\Views\Link;
@@ -49,17 +49,7 @@ class HomeController
         $user = App::$session->getUser();
 
         if ($user) {
-            if ($user['role'] == 'admin') {
-                $forms = [
-                    'create' => (new PizzaCreateForm())->render(),
-                    'update' => (new PizzaUpdateForm())->render()
-                ];
-            }
-            if ($user['role'] === 'user') {
-                $forms = [
-                    'order' => (new OrderCreateForm())->render(),
-                ];
-            }
+
 
             $heading = "Zdarova, {$user['user_name']}";
             $links = [
@@ -79,8 +69,9 @@ class HomeController
         }
 
         $content = (new View([
-            'title' => 'Welcome to our pizzaria',
-            'heading' => $heading,
+            'title' =>  $heading,
+
+
             'forms' => $forms ?? [],
             'links' => $links ?? []
         ]))->render(ROOT . '/app/templates/content/index.tpl.php');

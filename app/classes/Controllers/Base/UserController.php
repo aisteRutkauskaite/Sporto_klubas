@@ -10,7 +10,7 @@ class UserController
 
     public function __construct()
     {
-        if (App::$session->getUser()['role'] !== 'user') {
+        if (App::$session->getUser()) {
             header("Location: $this->redirect");
             exit();
         }

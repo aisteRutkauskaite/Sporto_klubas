@@ -15,25 +15,19 @@ class Navigation extends View
 
     public function generate()
     {
-        $nav = [App::$router::getUrl('index') => 'Home'];
+        $nav = [App::$router::getUrl('index') => 'Titulinis',
+            App::$router::getUrl('feedback') => 'Atsiliepimai'];
 
         if (App::$session->getUser()) {
-            if (App::$session->getUser()['role'] === 'admin') {
-                return $nav + [
-                        App::$router::getUrl('admin_orders') => 'Orders',
-                        App::$router::getUrl('admin_users') => 'Users',
-                        App::$router::getUrl('logout') => 'Logout',
-                    ];
-            } else {
-                return $nav + [
-                        App::$router::getUrl('user_orders') => 'Order',
-                        App::$router::getUrl('logout') => 'Logout',
-                    ];
-            }
+            return $nav + [
+
+//                       App::$router::getUrl('admin_users') => 'Users',
+                    App::$router::getUrl('logout') => 'Atsijungti',
+                ];
         } else {
             return $nav + [
-                    App::$router::getUrl('register') => 'Register',
-                    App::$router::getUrl('login') => 'Login',
+                    App::$router::getUrl('register') => 'Registruotis',
+                    App::$router::getUrl('login') => 'Prisijungti',
                 ];
         }
     }
