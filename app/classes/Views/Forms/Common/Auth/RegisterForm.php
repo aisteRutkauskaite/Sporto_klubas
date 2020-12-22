@@ -16,8 +16,7 @@ class RegisterForm extends Form
                         'validators' => [
                             'validate_field_not_empty',
                             'validate_symbols_and_numbers',
-                            'validate_field_range' => [
-                                'min' => 0,
+                            'validate_number_of_symbols' => [
                                 'max' => 40
                             ]
                         ],
@@ -33,8 +32,7 @@ class RegisterForm extends Form
                         'validators' => [
                             'validate_field_not_empty',
                             'validate_symbols_and_numbers',
-                            'validate_field_range' => [
-                                'min' => 0,
+                            'validate_number_of_symbols' => [
                                 'max' => 40
                             ]
                         ],

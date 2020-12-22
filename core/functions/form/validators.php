@@ -51,27 +51,25 @@ function validate_field_not_empty(string $field_value, array &$field): bool
 
 
 /**
- * Chef if number is within the min and max range.
+ * Check if number is in max range.
  *
- * @param string $field_value
+ * @param string $field_input
  * @param array $field
  * @param array $params
  * @return bool
  */
-function validate_field_range(string $field_value, array &$field, array $params): bool
+
+
+function validate_number_of_symbols(string $field_input, array &$field, array $params): bool
 {
-    if ($field_value < $params['min'] || $field_value > $params['max']) {
-        $field['error'] = strtr('irašykite skaičių tarp @min - @max!', [
-            '@min' => $params['min'],
+    if (strlen($field_input) > $params['max']) {
+        $field['error'] = strtr('Parašykite iki @max simbolių', [
             '@max' => $params['max']
         ]);
-
         return false;
     }
-
     return true;
 }
-
 
 /**
  * Check if provided email is in correct format
