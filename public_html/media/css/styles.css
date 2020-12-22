@@ -16,7 +16,7 @@ body {
 }
 
 main {
-    padding-top: 50px;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -49,13 +49,14 @@ header {
     height: 70px;
     display: flex;
     justify-content: center;
+    background-color: lightslategray;
+    width: 100%;
 }
 
 nav {
     display: flex;
     justify-content: space-around;
-    background-color: lightslategray;
-    width: 800px;
+    max-width: 800px;
     flex-wrap: wrap;
 }
 
@@ -103,7 +104,7 @@ a:hover {
 */
 
 form {
-    width: 800px;
+
     margin: 20px 0;
     background-color: lightslategray;
     padding: 20px;
@@ -140,7 +141,7 @@ button:hover {
 
 .error {
     color: red;
-    font-size: .8em;
+    font-size: 12px;
 }
 
 textarea {
@@ -168,7 +169,7 @@ form p {
     color: lightslategray;
 }
 
-.product-container {
+#service_container {
     width: 800px;
     height: 400px;
     display: grid;
@@ -179,6 +180,14 @@ form p {
     margin: 20px;
 }
 
+#image_container {
+    height: 150px;
+    width: 100%;
+    background-image: url('../images/istockphoto-1140063245-170667a.jpg');
+    background-size: cover;
+
+
+}
 
 
 
@@ -193,6 +202,41 @@ form p {
     color: lightslategray;
 }
 
-@media only screen and (min-width: 400px) {
+/*
+  #Footer
+*/
 
+footer {
+    height: 70px;
+    width: 100vw;
+    background-color: lightslategray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.footer-text {
+    color: white;
+    font-family: 'Lexend Zetta', sans-serif;
+    font-size: 10px;
+}
+
+
+@media only screen and (min-width: 400px) {
+    nav {
+        width: 800px;
+    }
+
+    #image_container {
+        width: 100vw;
+        height: 300px;
+        /*background-position: center;*/
+        background-size: contain;
+        background-repeat: repeat;
+    }
+
+    form {
+        width: 500px;
+    }
 }

@@ -65,7 +65,6 @@ class FeedbackApiController extends AuthController
      */
     private function timeFormat($time)
     {
-        date_default_timezone_set('Europe/Vilnius');
         $result = date("Y-m-d H:i:s");
 
         return $result;

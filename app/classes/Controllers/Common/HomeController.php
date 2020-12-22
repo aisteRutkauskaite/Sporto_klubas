@@ -47,7 +47,7 @@ class HomeController
     public function index(): ?string
     {
         $content = (new View([
-            'title' => 'Welcome to our Sports Club',
+//            'title' => 'Sveiki atvykę į mūsų sporto klubo tinklalapį',
         ]))->render(ROOT . '/app/templates/content/index.tpl.php');
 
         $this->page->setContent($content);

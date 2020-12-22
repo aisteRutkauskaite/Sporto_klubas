@@ -36,7 +36,7 @@ class FeedbackApiController
 
     private function timeFormat($row)
     {
-        date_default_timezone_set('Europe/Vilnius');
+//        date_default_timezone_set('Europe/Vilnius');
         $result = date("Y-m-d H:i:s");
 
         return $result;
