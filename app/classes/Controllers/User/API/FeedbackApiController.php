@@ -20,15 +20,22 @@ class FeedbackApiController extends AuthController
 
         if ($form->validate()) {
 
-            $user = App::$session->getUser();
+            $users = App::$db->getRowsWhere('users');
+            $user_logged = App::$session->getUser();
+
+            foreach ($users as $id => $user) {
+                if ($user_logged['email'] === $user['email']) {
+                    $user_id = $id;
+                }
+            }
 
             $feedback = $form->values();
             $feedback['id'] = App::$db->insertRow('feedback', $form->values() + [
-                    'name' => $user['name'],
+                    'user_id' => $user_id,
                     'timestamp' => time()
                 ]);
 
-            $feedback = $this->buildRow($user, $feedback);
+            $feedback = $this->buildRow($user_logged, $feedback);
             $response->setData($feedback);
         } else {
             $response->setErrors($form->getErrors());
