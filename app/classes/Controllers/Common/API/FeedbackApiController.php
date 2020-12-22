@@ -33,25 +33,11 @@ class FeedbackApiController
      * @param $row
      * @return string
      */
+
     private function timeFormat($row)
     {
-        $timeStamp = date('Y-m-d H:i:s', $row['timestamp']);
-        $difference = abs(strtotime("now") - strtotime($timeStamp));
-        $days = floor($difference / (3600 * 24));
-        $hours = floor($difference / 3600);
-        $minutes = floor(($difference - ($hours * 3600)) / 60);
-        $seconds = floor($difference % 60);
-
-        if ($days) {
-            $hours = $hours - 24;
-            $result = "{$days}d {$hours}:{$minutes} H";
-        } elseif ($minutes) {
-            $result = "{$minutes} min";
-        } elseif ($hours) {
-            $result = "{$hours}:{$minutes} H";
-        } else {
-            $result = "{$seconds} seconds";
-        }
+        date_default_timezone_set('Europe/Vilnius');
+        $result = date("Y-m-d H:i:s");
 
         return $result;
     }

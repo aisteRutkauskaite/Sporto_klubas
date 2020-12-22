@@ -1,9 +1,5 @@
 'use strict';
 
-// const endpoints = {
-//     get: '/api/feedback/user/get',
-//     create: 'api/feedback/user/create',
-// };
 const endpoints = {
     get: '/api/feedback/get',
     create: '/api/feedback/create',
@@ -12,7 +8,6 @@ const endpoints = {
 /**
  * This defines how JS code selects elements by ID
  */
-
 const selectors = {
     forms: {
         create: 'feedback-create-form',
@@ -48,7 +43,6 @@ function api(url, formData, success, fail) {
             }
         });
 }
-
 
 /**
  * Form array
@@ -298,12 +292,17 @@ const table = {
  */
 const app = {
     init: function () {
+        // Initialize all forms
+        Object.keys(forms).forEach(formId => {
+            let success = forms[formId].init();
+            console.log('Initializing form "' + formId + '": ' + (success ? 'SUCCESS' : 'FAIL'));
+        });
 
         console.log('Initializing table...');
         let success = table.init();
-        console.log('Table: Initialization: ' + (success ? 'PASS' : 'FAIL'));
+        console.log('table: Initialization: ' + (success ? 'PASS' : 'FAIL'));
     }
 };
 
 // Launch App
-app.init();
+app.init()

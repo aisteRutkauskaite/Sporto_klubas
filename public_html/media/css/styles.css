@@ -32,7 +32,12 @@ table, th, td {
     border-collapse: collapse;
 }
 
-th, td {
+.table {
+    width: 80%;
+}
+
+tr, td, th {
+    margin: 10px;
     padding: 10px;
 }
 
@@ -73,8 +78,12 @@ li {
     margin: 10px;
 }
 
-a {
+nav a  {
     color: white;
+}
+
+ a  {
+    color: lightslategray;
     font-size: 15px;
     text-decoration: none;
     cursor: pointer;
@@ -84,8 +93,9 @@ a {
 
 }
 
+
 a:hover {
-    border: 2px solid rgb(211, 245, 45);
+    border: 2px solid rgb(238, 166, 84);
 }
 
 /*
@@ -116,91 +126,40 @@ input {
 button {
     padding: 7px;
     margin: 5px;
-    background-color: rgb(211, 245, 45);
+    background-color: rgb(238, 166, 84);
     color: white;
     font-family: 'Lexend Zetta', sans-serif;
     border: none;
     width: 300px;
 }
 
+button:hover {
+    color: lightslategray;
+}
+
+
 .error {
     color: red;
     font-size: .8em;
 }
 
-textarea.input-field {
+textarea {
     padding: 20px;
+    width: 300px;
+    height: 150px;
 }
+
+form p {
+    color: white;
+    font-family: 'Lexend Zetta', sans-serif;
+    font-size: 15px;
+    padding: 10px;
+}
+
 
 /*
   # Index
 */
-
-.index__body {
-    /*height: 100vh;*/
-}
-
-#image_container {
-    background-image: url("/images/doing-abs.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    height: 300px;
-    width: 100vw;
-}
-
-
-#pizza-grid-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
-    align-content: center;
-    justify-items: center;
-    margin: 0 auto;
-}
-
-#pizza-grid-container .data-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid gray;
-}
-
-.item {
-    margin: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 250px;
-    height: 400px;
-}
-
-img {
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
-    transition: 0.5s ease-in-out;
-    border-radius: 100%;
-    margin: 15px;
-}
-
-.product_bottom {
-    width: 150px;
-}
-
-h3, h1 {
-    margin: 10px;
-}
-
-img:hover {
-    transform: scale(1.1);
-}
-
-main {
-    margin-bottom: 50px;
-}
 
 .title {
     font-family: 'Lexend Zetta', sans-serif;
@@ -209,35 +168,19 @@ main {
     color: lightslategray;
 }
 
-.table {
-    width: 80%;
+.product-container {
+    width: 800px;
+    height: 400px;
+    display: grid;
+    grid-template-columns: 25% 25% 25%;
+    grid-gap: 20px;
+    align-content: center;
+    justify-items: center;
+    margin: 20px;
 }
 
-tr, td, th {
-    margin: 10px;
-    padding: 10px;
-}
 
-.item_text {
-    font-size: 20px;
-    font-family: 'Bangers', cursive;
-    margin: 10px;
-}
 
-.modal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: orangered;
-}
-
-.modal .close {
-    color: white;
-    font-size: 50px;
-    cursor: pointer;
-}
 
 /*
   #Feedback
@@ -250,3 +193,6 @@ tr, td, th {
     color: lightslategray;
 }
 
+@media only screen and (min-width: 400px) {
+
+}

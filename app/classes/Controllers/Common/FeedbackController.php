@@ -33,9 +33,9 @@ class FeedbackController
             ];
             $text = 'Sportas sveikata';
             $links = [
-                'register' => (new Link([
+                'logout' => (new Link([
                     'url' => App::$router::getUrl('logout'),
-                    'text' => 'Logout'
+                    'text' => 'Atsijungti'
                 ]))->render()
             ];
         } else {
@@ -43,7 +43,11 @@ class FeedbackController
             $links = [
                 'register' => (new Link([
                     'url' => App::$router::getUrl('register'),
-                    'text' => 'Register'
+                    'text' => 'Registruotis',
+                ]))->render(),
+                'login' => (new Link([
+                    'url' => App::$router::getUrl('login'),
+                    'text' => 'Prisijungti',
                 ]))->render()
             ];
         }

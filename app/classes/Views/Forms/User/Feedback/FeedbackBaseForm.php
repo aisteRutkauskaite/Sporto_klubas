@@ -16,7 +16,8 @@ class FeedbackBaseForm extends Form
                     'type' => 'textarea',
                     'validators' => [
                         'validate_field_not_empty',
-                        'validate_number_of_symbols' => [
+                        'validate_field_range' => [
+                            'min' => 0,
                             'max' => 500
                         ]
                     ],

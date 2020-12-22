@@ -13,6 +13,7 @@ class FeedbackTable extends Table
     {
         parent::__construct([
             'headers' => [
+                'ID',
                 'Vardas',
                 'Atiliepimas',
                 'Data',
