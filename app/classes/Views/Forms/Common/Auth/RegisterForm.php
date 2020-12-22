@@ -45,7 +45,7 @@ class RegisterForm extends Form
                         ]
                     ],
                     'email' => [
-                        'label' => 'EMAIL',
+                        'label' => 'El. paštas',
                         'type' => 'text',
                         'validators' => [
                             'validate_field_not_empty',
@@ -54,7 +54,7 @@ class RegisterForm extends Form
                         ],
                         'extra' => [
                             'attr' => [
-                                'placeholder' => 'Enter email',
+                                'placeholder' => 'Įrašykite savo el.paštą',
                             ]
                         ]
                     ],

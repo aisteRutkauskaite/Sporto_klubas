@@ -16,7 +16,6 @@ main {
 /*
   # Table
 */
-
 table, th, td {
     border: 1px solid lightslategray;
     border-collapse: collapse;
@@ -202,7 +201,6 @@ form p {
 /*
   #Feedback
 */
-
 .message_for_user {
     font-family: 'Lexend Zetta', sans-serif;
     font-size: 15px;
@@ -220,7 +218,6 @@ form p {
 /*
   #Footer
 */
-
 footer {
     height: 70px;
     width: 100%;
@@ -280,5 +277,4 @@ footer {
         font-size: 40px;
         margin: 50px;
     }
-
 }

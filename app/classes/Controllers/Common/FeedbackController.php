@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Controllers\Common;
-
 
 use App\App;
 use App\Views\BasePage;

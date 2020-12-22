@@ -2,17 +2,8 @@
 
 namespace App\Controllers\Common;
 
-use App\Abstracts\Controller;
-use App\App;
 use App\Views\BasePage;
-use App\Views\Forms\Admin\Order\OrderCreateForm;
-use App\Views\Forms\Admin\Pizza\PizzaCreateForm;
-use App\Views\Forms\Admin\Pizza\PizzaUpdateForm;
-use App\Views\Forms\Admin\PizzaDeleteForm;
-use App\Views\Tables\User\FeedbackTable;
 use Core\View;
-use App\Views\Content\HomeContent;
-use Core\Views\Link;
 
 class HomeController
 {
@@ -34,7 +25,6 @@ class HomeController
     {
         $this->page = new BasePage([
             'title' => 'Sporto klubas',
-
         ]);
     }
 
@@ -47,8 +37,7 @@ class HomeController
     public function index(): ?string
     {
         $content = (new View([
-//            'title' => 'Sveiki atvykę į mūsų sporto klubo tinklalapį',
-        ]))->render(ROOT . '/app/templates/content/index.tpl.php');
+            ]))->render(ROOT . '/app/templates/content/index.tpl.php');
 
         $this->page->setContent($content);
 

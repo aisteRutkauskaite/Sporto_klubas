@@ -21,7 +21,6 @@ class LoginController extends GuestController
         ]);
     }
 
-
     public function login()
     {
         if (isset($_POST['login'])) {
@@ -39,6 +38,5 @@ class LoginController extends GuestController
 
         $this->page->setContent($this->form->render());
         return $this->page->render();
-
     }
 }

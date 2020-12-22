@@ -24,20 +24,6 @@ function validate_user_unique(string $field_input, array &$field): bool
     return true;
 }
 
-
-
-function validate_row_exists(string $field_input, array &$field): bool
-{
-    if (App::$db->rowExists('pizzas', $field_input)) {
-        return true;
-    }
-
-    $field['error'] = 'Tokia eilute neegzistuoja';
-
-    return false;
-}
-
-
 /**
  *
  *Checks if there is such email in the database.

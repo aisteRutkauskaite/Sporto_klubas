@@ -6,7 +6,6 @@ use Core\FileDB;
 use Core\Router;
 use Core\Session;
 
-
 class App
 {
     public static FileDB $db;

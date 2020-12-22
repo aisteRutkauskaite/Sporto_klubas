@@ -11,6 +11,7 @@ class RegisterController extends GuestController
 {
     protected  RegisterForm $form;
     protected BasePage $page;
+
     public function __construct()
     {
         parent::__construct();
@@ -19,6 +20,7 @@ class RegisterController extends GuestController
             'title' => 'Register'
         ]);
     }
+
     public function register()
     {
         if ($this->form->validate()) {

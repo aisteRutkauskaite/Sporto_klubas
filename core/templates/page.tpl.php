@@ -1,4 +1,3 @@
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +9,6 @@
     <?php foreach ($data['js'] as $path) : ?>
         <script src="<?php print $path; ?>" defer></script>
     <?php endforeach; ?>
-
 </head>
 <body class="index__body">
 <header>

@@ -1,10 +1,6 @@
 <?php
 
-
-
-
 namespace App\Controllers\Common\API;
-
 
 use App\App;
 use Core\Api\Response;
@@ -48,7 +44,6 @@ class FeedbackApiController
 
         return $feedbacks;
     }
-
 }
 
 
