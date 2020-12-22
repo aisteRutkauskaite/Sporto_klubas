@@ -22,7 +22,7 @@ table, th, td {
 }
 
 .table {
-    width: 40%;
+    width: 50%;
 }
 
 tr, td, th {
@@ -81,8 +81,11 @@ a {
     font-family: 'Lexend Zetta', sans-serif;
 }
 
-
 a:hover {
+    border: 2px solid rgb(238, 166, 84);
+}
+
+.active {
     border: 2px solid rgb(238, 166, 84);
 }
 

@@ -31,7 +31,7 @@ class LoginController extends GuestController
             $clean_inputs = $this->form->values();
             App::$session->login($clean_inputs['email'], $clean_inputs['password']);
             if (App::$session->getUser()) {
-                header('Location: /index.php');
+                header('Location: /');
                 exit();
             }
         }

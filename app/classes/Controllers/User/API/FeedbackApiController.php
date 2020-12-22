@@ -7,7 +7,6 @@ use App\Controllers\Base\API\AuthController;
 use App\Views\Forms\User\Feedback\FeedbackCreateForm;
 use Core\Api\Response;
 
-
 class FeedbackApiController extends AuthController
 {
     public function create(): string

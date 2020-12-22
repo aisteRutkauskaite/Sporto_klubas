@@ -35,7 +35,7 @@ class FeedbackApiController
         foreach ($feedbacks as $id => &$row) {
             $user = App::$db->getRowById('users', $row['user_id']);
             $row = [
-                'id' => $row['user_id'],
+                'id' => $id,
                 'name' => $user['name'],
                 'feedback' => $row['feedback'],
                 'date' => $row['date']

@@ -18,7 +18,7 @@
     <?php print $data['content']; ?>
 </main>
 <footer>
-    <span class="footer-text"> © 2019. Aistė Rutkauskaitė, all rights reserved.</span>
+    <span class="footer-text"> © 2020. Aistė Rutkauskaitė, all rights reserved.</span>
 </footer>
 </body>
 </html>

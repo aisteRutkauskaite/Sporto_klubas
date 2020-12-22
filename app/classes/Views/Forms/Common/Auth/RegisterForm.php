@@ -104,6 +104,5 @@ class RegisterForm extends Form
                 ]
             ]
         );
-
     }
 }

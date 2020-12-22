@@ -1,27 +1,7 @@
-<?php
-$services = [
-    [
-        "service_name" => "Sporto įranga",
-        "service_image" => "https://image.freepik.com/free-vector/sporty-man-doing-ring-dips-exercises-with-gymnastic-rings-guy-training-gym-cardio-crossfit-workout-healthy-lifestyle-concept-white-background-full-length_48369-26825.jpg",
-        "service_description" => "Įvairi sporto įranga sportuojantiems klubo lankytojams"
-    ],
-    [
-        "service_name" => "Treniruotes",
-        "service_image" => "https://image.freepik.com/free-vector/women-working-out_18591-46304.jpg",
-        "service_description" => "Įvairios sporto treniruotes sportuojantiems"
-    ],
-    [
-        "service_name" => "Treniruotes lauke",
-        "service_image" => "https://image.freepik.com/free-vector/couple-working-out_18591-46305.jpg",
-        "service_description" => "Įvairios sporto treniruotes sportuojantiems lauke"
-    ],
-]
-?>
-
 <section id="image_container"></section>
 <section id="services_container">
 
-    <?php foreach ($services as $service): ?>
+    <?php foreach ($data['services'] as $service): ?>
 
         <article class="service_container">
             <img class="service_image" src="<?php print $service['service_image']; ?>" alt="">
