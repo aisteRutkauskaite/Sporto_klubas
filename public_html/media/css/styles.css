@@ -99,6 +99,7 @@ form {
     flex-direction: column;
     align-items: center;
     width: 250px;
+    text-align: center;
 }
 
 span,
@@ -257,7 +258,7 @@ footer {
     }
 
     textarea {
-        width: 200px;
+        width: 300px;
     }
 
     button {

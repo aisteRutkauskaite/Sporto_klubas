@@ -28,21 +28,6 @@ class FeedbackApiController
     }
 
     /**
-     * Returns formatted time from timestamp given in row.
-     *
-     * @param $row
-     * @return string
-     */
-
-    private function timeFormat($row)
-    {
-//        date_default_timezone_set('Europe/Vilnius');
-        $result = date("Y-m-d H:i:s");
-
-        return $result;
-    }
-
-    /**
      * Formats rows from given @param (in this case - orders data)
      * Intended use is for setting data in json.
      *
@@ -54,10 +39,10 @@ class FeedbackApiController
         foreach ($feedbacks as $id => &$row) {
             $user = App::$db->getRowById('users', $row['user_id']);
             $row = [
-                'id' => $id,
+                'id' => $row['user_id'],
                 'name' => $user['name'],
                 'feedback' => $row['feedback'],
-                'timestamp' => $this->timeFormat($row)
+                'date' => $row['date']
             ];
         }
 

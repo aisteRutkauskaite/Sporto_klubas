@@ -32,7 +32,7 @@ class FeedbackApiController extends AuthController
             $feedback = $form->values();
             $feedback['id'] = App::$db->insertRow('feedback', $form->values() + [
                     'user_id' => $user_id,
-                    'timestamp' => time()
+                    'date' => $this->timeFormat(time())
                 ]);
 
             $feedback = $this->buildRow($user_logged, $feedback);
@@ -60,7 +60,7 @@ class FeedbackApiController extends AuthController
             'id' => $feedback['id'],
             'name' => $user['name'],
             'feedback' => $feedback['feedback'],
-            'timestamp' => $this->timeFormat(time())
+            'date' => $this->timeFormat(time())
         ];
     }
 
@@ -72,7 +72,8 @@ class FeedbackApiController extends AuthController
      */
     private function timeFormat($time)
     {
-        $result = date("Y-m-d H:i:s");
+        date_default_timezone_set('Europe/Vilnius');
+        $result = date("Y-m-d H:i:s", $time);
 
         return $result;
     }

@@ -2,7 +2,7 @@
 
 namespace App\Views\Tables\User;
 
-use App\App;
+
 use Core\Views\Table;
 
 
